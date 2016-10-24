@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'sorcery'
+
 gem 'bullet', group: 'development'
 
 gem 'rubocop', '~> 0.42.0', require: false
