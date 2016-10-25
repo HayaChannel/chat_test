@@ -4,6 +4,7 @@ class CreateSessions < ActiveRecord::Migration[5.0]
       t.string :access_token
       t.datetime :expires_at
       t.boolean :active
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

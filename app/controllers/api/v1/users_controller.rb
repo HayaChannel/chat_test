@@ -1,10 +1,13 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :require_valid_token, only: :create
   def index
     @users = User.all
+    render json: @users
   end
 
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     render json: @user
   end
 
@@ -20,7 +23,7 @@ class Api::V1::UsersController < ApplicationController
     if @user.save
       render json: @user, notice: "Signed up!"
     else
-      render :new, notice: 'Failed to sign in'
+      #render :new, notice: 'Failed to sign in'
     end
   end
 
@@ -34,6 +37,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:username, :password)
