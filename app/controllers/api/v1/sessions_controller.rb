@@ -4,7 +4,7 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def create
-    if @user = login(params[:email], params[:password])
+    if @user = login(params[:username], params[:password])
       @user.activate
       render json: @user, notice: 'Logged in'
     else

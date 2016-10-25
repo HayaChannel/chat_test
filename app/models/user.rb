@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :me_logings
   has_many :rooms, through: :me_logings
   has_many :messages
-  has_many :api_keys, dependent: :destroy
+  has_many :sessions, dependent: :destroy
 
   validates :username,
             presence: true,
